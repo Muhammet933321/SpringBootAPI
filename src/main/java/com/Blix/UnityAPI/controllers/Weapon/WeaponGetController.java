@@ -24,11 +24,20 @@ public class WeaponGetController {
     @GetMapping("/get/by-id/{id}")
     public ResponseEntity<Weapon> getWeaponById(@PathVariable Long id) {
         Weapon weapon = weaponService.getWeaponById(id);
-        return weapon != null ? ResponseEntity.ok(weapon) : ResponseEntity.notFound().build();
+
+        if (weapon != null) {
+            return ResponseEntity.ok(weapon);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
     @GetMapping("/get/by-name/{name}")
     public ResponseEntity<Weapon> getWeaponByName(@PathVariable String name) {
         Optional<Weapon> weapon = weaponService.getWeaponByName(name);
-        return weapon.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(404).body(null));
+        if (weapon.isPresent()) {
+            return ResponseEntity.ok(weapon.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

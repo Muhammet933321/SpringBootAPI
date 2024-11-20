@@ -14,7 +14,7 @@ import java.util.Optional;
 public class UserGetController {
 
     @Autowired
-    private UserService userService;
+    private UserService userService ;
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {

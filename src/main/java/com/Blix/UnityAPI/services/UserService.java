@@ -26,6 +26,7 @@ public class UserService {
     }
     public User saveUser(User user) {
         return userRepository.save(user);
+
     }
     public List<User> getTop5Users() {
         return userRepository.findTop5ByOrderByLevelDesc();
