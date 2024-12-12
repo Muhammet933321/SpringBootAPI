@@ -1,7 +1,7 @@
 package com.Blix.UnityAPI.entities;
 
-
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -16,6 +16,9 @@ public class User {
     private int level;
     private int goldAmount;
     private int experienceLevel;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<IpLog> ipLogs; // User ile Many-to-One ilişki
 
     public Long getId() {
         return id;
@@ -63,5 +66,13 @@ public class User {
 
     public void setExperienceLevel(int experienceLevel) {
         this.experienceLevel = experienceLevel;
+    }
+
+    public List<IpLog> getIpLogs() {
+        return ipLogs;
+    }
+
+    public void setIpLogs(List<IpLog> ipLogs) {
+        this.ipLogs = ipLogs;
     }
 }

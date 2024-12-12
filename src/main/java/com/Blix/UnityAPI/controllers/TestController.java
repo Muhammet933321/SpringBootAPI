@@ -9,8 +9,12 @@ public class TestController {
     class HelloworldController {
         @GetMapping("/test")
         String hello() {
-            return "Deneme !!";
+            return "Created By Muhammet Cigdem";
+        }
 
+        @GetMapping("")
+        String test() {
+            return "Created By Muhammet Cigdem";
         }
 
     }
